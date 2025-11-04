@@ -7,13 +7,13 @@ using System.Linq;
 using System.IO;
 using static UnityEngine.Mathf;
 using UnityEngine.TextCore.LowLevel;
-using static ModNameToReplace.Plugin;
+using static AllPerkedUp.Plugin;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace ModNameToReplace
+namespace AllPerkedUp
 {
-    public class ModNameToReplaceFunctions
+    public class AllPerkedUpFunctions
     {
 
 

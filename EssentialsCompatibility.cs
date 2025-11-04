@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using BepInEx;
 using static Obeliskial_Essentials.Essentials;
-using static ModNameToReplace.Plugin;
+using static AllPerkedUp.Plugin;
 public static class EssentialsCompatibility
 {
     private static bool? _enabled;
@@ -26,7 +26,7 @@ public static class EssentialsCompatibility
             _description: "Mod Name To Replace",
             _version: PluginVersion,
             _date: ModDate,
-            _link: @"https://github.com/binbinmods/ModNameToReplace"
+            _link: @"https://github.com/binbinmods/AllPerkedUp"
         );
         LogInfo($"{PluginGUID} {PluginVersion} has loaded with Essentials!");
     }

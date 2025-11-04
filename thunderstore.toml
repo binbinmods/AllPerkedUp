@@ -6,7 +6,7 @@ namespace = "Binbin"
 name = "Mod_Name_To_Replace"
 versionNumber = "1.0.0"
 description = "A mod that DescriptionToReplace"
-websiteUrl = "https://github.com/binbinmods/ModNameToReplace"
+websiteUrl = "https://github.com/binbinmods/AllPerkedUp"
 containsNsfwContent = false
 
 [package.dependencies]
@@ -18,7 +18,7 @@ readme = "./README.md"
 outdir = "./build"
 
 [[build.copy]]
-source = "./ModNameToReplace"
+source = "./AllPerkedUp"
 target = ""
 
 

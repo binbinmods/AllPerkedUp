@@ -1,7 +1,7 @@
 using HarmonyLib;
 using System;
 
-namespace ModNameToReplace
+namespace AllPerkedUp
 {
     [HarmonyPatch] // DO NOT REMOVE/CHANGE - This tells your plugin that this is part of the mod
     public class AntiCheat

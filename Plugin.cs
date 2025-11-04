@@ -10,7 +10,7 @@ using BepInEx.Bootstrap;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-// using static ModNameToReplace.EssentialsCompatibility;
+// using static AllPerkedUp.EssentialsCompatibility;
 
 
 // The Plugin csharp file is used to specify some general info about your plugin. and set up things for 
@@ -19,7 +19,7 @@ using System.Runtime.CompilerServices;
 // Make sure all your files have the same namespace and this namespace matches the RootNamespace in the .csproj file
 // All files that are in the same namespace are compiled together and can "see" each other more easily.
 
-namespace ModNameToReplace
+namespace AllPerkedUp
 {
     // These are used to create the actual plugin. If you don't need Obeliskial Essentials for your mod, 
     // delete the BepInDependency and the associated code "RegisterMod()" below.
@@ -69,12 +69,30 @@ namespace ModNameToReplace
             Log = Logger;
 
             // Sets the title, default values, and descriptions
-            string modName = "ModNameToReplace";
+            string modName = "AllPerkedUp";
             EnableMod = Config.Bind(new ConfigDefinition(modName, "EnableMod"), true, new ConfigDescription("Enables the mod. If false, the mod will not work then next time you load the game."));
             EnableDebugging = Config.Bind(new ConfigDefinition(modName, "EnableDebugging"), false, new ConfigDescription("Enables the debugging"));
             // EnablePerkChangeInTowns = Config.Bind(new ConfigDefinition(modName, "EnablePerkChangeInTowns"), true, new ConfigDescription("Enables you to change perks in any town."));
             // DevMode = Config.Bind(new ConfigDefinition("DespairMode", "DevMode"), false, new ConfigDescription("Enables all of the things for testing."));
-            // apply patches, this functionally runs all the code for Harmony, running your mod
+            AcceptableValueList<string> difficulties = new AcceptableValueList<string>(["Off", "Easy", "Normal", "Hard", "Extreme", "Despair"]);
+            DifficultyLevel = Config.Bind(new ConfigDefinition("DespairMode", "DifficultyLevel"), "Despair", new ConfigDescription("Sets the difficulty level. Certain features will be enabled/disabled at different difficulties. Restart the game after changing this option to refresh text.", difficulties));
+            difficultyLevel = DifficultyLevel.Value switch
+            {
+                "Off" => DifficultyLevelEnum.Off,
+                "Easy" => DifficultyLevelEnum.Easy,
+                "Normal" => DifficultyLevelEnum.Normal,
+                "Hard" => DifficultyLevelEnum.Hard,
+                "Extreme" => DifficultyLevelEnum.Extreme,
+                "Despair" => DifficultyLevelEnum.Despair,
+                _ => DifficultyLevelEnum.Despair
+            };
+            difficultyLevelInt = (int)difficultyLevel;
+
+            EnablePerkChangeInTowns = Config.Bind(new ConfigDefinition(modName, "EnablePerkChangeInTowns"), true, new ConfigDescription("Enables you to change perks in any town."));
+            EnablePerkChangeInTownsMP = true; // = Config.Bind(new ConfigDefinition(modName, "EnablePerkChangeInTownsMP"), true, new ConfigDescription("Enables you to change perks in any town for multiplayer."));
+            EnablePerkChangeWhenever = Config.Bind(new ConfigDefinition(modName, "EnablePerkChangeWhenever"), false, new ConfigDescription("Enables you to change perks at any time."));
+            EnablePerkChangeWheneverMP = true; //Config.Bind(new ConfigDefinition(modName, "EnablePerkChangeWheneverMP"), false, new ConfigDescription("Enables you to change perks at any time for Multiplayer."));
+
             PluginName = PluginInfo.PLUGIN_NAME;
             PluginVersion = PluginInfo.PLUGIN_VERSION;
             PluginGUID = PluginInfo.PLUGIN_GUID;
